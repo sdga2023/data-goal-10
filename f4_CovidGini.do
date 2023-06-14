@@ -8,10 +8,7 @@ cd "C:\Users\WB514665\OneDrive - WBG\DECDG\SDG Atlas 2022\Ch10\playground-sdg-10
 *** PREPARE COVID INEQUALITY DATA ***
 *************************************
 // File from the 2022 Poverty and Shared Prosperity Report
-use "C:\Users\WB514665\OneDrive - WBG\Research\Poverty-climate\01-Inputdata\Welfare\PSPRpovertydistributions.dta", clear
-drop if coverage=="rural" & code=="ARG"
-keep code welf2019 welfcovid2020 welfprecovid2020 Indicator
-keep if Indicator<=4
+use "Input data\PSPRpovertydistributions.dta", clear
 
 // Calculate Gini
 gen ginicovid = .
@@ -50,7 +47,7 @@ save    `coviddata'
 ************************
 *** PREPARE IMF DATA ***
 ************************
-import excel "Inputdata/FiscalMeasures-DatabaseJanUpdate-For-Publication-030221.xlsx", sheet("Summary.Global") clear
+import excel "Input data/FiscalMeasures-DatabaseJanUpdate-For-Publication-030221.xlsx", sheet("Summary.Global") clear
 keep B O T
 drop if _n<7
 drop if _n>197
@@ -89,5 +86,5 @@ rename above fiscalspending
 
 merge 1:1 code using `coviddata', nogen keep(2 3)
 order fiscalspending, last
-export delimited "Outputdata/Covid.csv", replace
+export delimited "Output data/Covid.csv", replace
 

@@ -31,7 +31,7 @@ replace code = "Lower-middle income" if incomelevel=="LMC"
 drop incomelevel
 ren sm_pop refugees
 ren code area
-export delimited using "Outputdata\Card1.csv", replace	   
+export delimited using "Output data\Card1.csv", replace	   
 	   
 
 **************
@@ -51,4 +51,4 @@ sort regionmean_ib ib
 bysort regionname (ib): gen n = _n/_N
 drop ob year regionmean_ob
 compress
-export delimited using "Outputdata\Card2.csv", replace
+export delimited using "Output data\Card2.csv", replace
